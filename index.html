@@ -588,6 +588,8 @@
         /* ========== アニメーション ========== */
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+            /* ステッキーヘッダー分の余白 */
         }
 
         .fade-in {
@@ -914,7 +916,22 @@
         });
 
         navItems.forEach(item => {
-            item.addEventListener('click', () => {
+            item.addEventListener('click', (e) => {
+                // デフォルトの動作（ハッシュリンクによる遷移）を無効化
+                e.preventDefault();
+
+                // リンク先のIDを取得
+                const targetId = item.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    // スムーズスクロールで移動
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+
+                // メニューを閉じる
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('active');
             });
