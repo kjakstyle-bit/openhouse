@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>米子ワード新会堂完成記念オープンハウス</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #f5f8fb;
+            --color-accent-blue: #4a6fa5;
+            --color-accent-slate: #6b7280;
+            --color-text-dark: #1f2937;
+            --color-text-light: #6b7280;
+            --color-border: #e5e7eb;
+            --color-white: #ffffff;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            color: var(--color-text-dark);
+            line-height: 1.6;
+            background-color: var(--color-primary);
+        }
+
+        /* ========== ヘッダー ========== */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 1rem 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-accent-blue);
+        }
+
+        .nav-links {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+                gap: 2rem;
+                list-style: none;
+            }
+
+            .nav-links a {
+                text-decoration: none;
+                color: var(--color-text-dark);
+                font-size: 0.95rem;
+                transition: color 0.3s ease;
+            }
+
+            .nav-links a:hover {
+                color: var(--color-accent-blue);
+            }
+        }
+
+        /* ========== ヒーローセクション（フルスクリーン） ========== */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #f0f4f8;
+        }
+
+        .hero-image-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #e8f0f8 0%, #f0f8fc 100%);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.6) 100%);
+        }
+
+        .hero-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 2;
+            text-align: center;
+            padding: 3rem 1.5rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.95) 40%, rgba(255,255,255,1) 100%);
+            min-height: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .hero-content h1 {
+            font-size: 2.2rem;
+            color: var(--color-accent-blue);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--color-text-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .hero-date {
+            background-color: var(--color-accent-blue);
+            color: var(--color-white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            align-self: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--color-accent-blue);
+            color: var(--color-white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--color-accent-blue);
+            cursor: pointer;
+            align-self: center;
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--color-accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 111, 165, 0.3);
+        }
+
+        @media (max-width: 767px) {
+            .hero {
+                height: 90vh;
+            }
+
+            .hero-content {
+                min-height: 50%;
+                padding: 2rem 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 1.6rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .hero-date {
+                font-size: 0.95rem;
+                padding: 0.6rem 1.2rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 1.8rem;
+                font-size: 1rem;
+            }
+        }
+
+        /* ========== セクション共通 ========== */
+        section {
+            padding: 5rem 1.5rem;
+        }
+
+        .section-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--color-accent-blue);
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--color-accent-blue);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            text-align: center;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 767px) {
+            section {
+                padding: 3.5rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* ========== イントロダクション ========== */
+        #introduction {
+            background-color: var(--color-white);
+        }
+
+        .intro-content {
+            background-color: #f8fafc;
+            padding: 3rem;
+            border-radius: 16px;
+            border: 1px solid var(--color-border);
+            text-align: center;
+        }
+
+        .intro-content p {
+            margin-bottom: 1.5rem;
+            color: var(--color-text-dark);
+            line-height: 2;
+            font-size: 1.05rem;
+        }
+
+        .intro-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .highlight-item {
+            background-color: var(--color-white);
+            padding: 2rem 1rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .highlight-item:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .highlight-item strong {
+            color: var(--color-accent-blue);
+            display: block;
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .highlight-item p {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        /* ========== 見どころセクション ========== */
+        #highlights {
+            background-color: var(--color-primary);
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .highlight-card {
+            background-color: var(--color-white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .highlight-card:hover {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+        }
+
+        .highlight-card-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background-color: #f1f5f9;
+        }
+
+        .highlight-card-content {
+            padding: 2rem;
+            flex-grow: 1;
+        }
+
+        .highlight-card h3 {
+            font-size: 1.4rem;
+            color: var(--color-accent-blue);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .highlight-card p {
+            color: var(--color-text-light);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* ========== スケジュール ========== */
+        #schedule {
+            background-color: var(--color-white);
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 2rem;
+            background-color: var(--color-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--color-border);
+        }
+
+        .schedule-table th {
+            background-color: var(--color-accent-blue);
+            color: var(--color-white);
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .schedule-table td {
+            padding: 1.2rem;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-dark);
+        }
+
+        .schedule-table tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .schedule-date {
+            font-weight: 700;
+            color: var(--color-accent-blue);
+        }
+
+        @media (max-width: 767px) {
+            .schedule-table {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* ========== アクセス ========== */
+        #access {
+            background-color: var(--color-primary);
+        }
+
+        .access-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .access-info {
+            background-color: var(--color-white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .access-info h3 {
+            color: var(--color-accent-blue);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .access-info p {
+            color: var(--color-text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .access-info a {
+            color: var(--color-accent-blue);
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .access-info a:hover {
+            border-bottom-color: var(--color-accent-blue);
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 450px;
+            background-color: #e2e8f0;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-light);
+            font-size: 1rem;
+            border: 2px dashed var(--color-border);
+            text-align: center;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 767px) {
+            .access-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .map-placeholder {
+                height: 300px;
+            }
+        }
+
+        /* ========== フッター ========== */
+        footer {
+            background-color: #334155;
+            color: var(--color-white);
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            opacity: 0.8;
+            font-size: 0.95rem;
+        }
+
+        /* ========== アニメーション ========== */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== ヘッダー ========== -->
+    <header>
+        <div class="header-content">
+            <div class="logo">米子ワード新会堂</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#introduction">ご挨拶</a></li>
+                    <li><a href="#highlights">見どころ</a></li>
+                    <li><a href="#schedule">スケジュール</a></li>
+                    <li><a href="#access">アクセス</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ========== ヒーローセクション（フルスクリーン） ========== -->
+    <section class="hero">
+        <div class="hero-image-container">
+            <img src="yonago-chapel.png" alt="米子ワード新会堂の美しい外観" class="hero-image">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>はじめまして、米子の新しい教会です</h1>
+            <p>どなたでもご自由にお越しください</p>
+            <div class="hero-date">2026年4月17日(金)〜19日(日)</div>
+            <a href="#access" class="cta-button">アクセス・地図を見る</a>
+        </div>
+    </section>
+
+    <!-- ========== イントロダクション ========== -->
+    <section id="introduction">
+        <div class="section-container">
+            <h2 class="section-title">ご挨拶</h2>
+            <div class="intro-content fade-in">
+                <p>
+                    このたび、末日聖徒イエス・キリスト教会 米子ワードの新会堂が完成いたしました。<br>
+                    地域の皆様の温かいご支援とご協力をいただき、この素晴らしい日を迎えられましたことを心より感謝申し上げます。
+                </p>
+                <p>
+                    新しく清潔な会堂は、地域の皆様が集い、交流できる場所を目指しています。<br>
+                    「どんな建物なのかな？」「どんな活動をしているの？」といった疑問に気軽にお答えするため、<br>
+                    このオープンハウスを開催いたします。
+                </p>
+                <p>
+                    <strong>入場無料・予約不要・勧誘なし</strong>ですので、<br>
+                    お散歩のついでに、ご家族やご友人とぜひお気軽にお立ち寄りください。
+                </p>
+            </div>
+            <div class="highlight-list">
+                <div class="highlight-item fade-in">
+                    <strong>入場無料</strong>
+                    <p>どなたでもお気軽に</p>
+                </div>
+                <div class="highlight-item fade-in">
+                    <strong>予約不要</strong>
+                    <p>当日直接お越しください</p>
+                </div>
+                <div class="highlight-item fade-in">
+                    <strong>出入り自由</strong>
+                    <p>お好きな時間にご見学</p>
+                </div>
+                <div class="highlight-item fade-in">
+                    <strong>勧誘なし</strong>
+                    <p>安心してご覧いただけます</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== 見どころ ========== -->
+    <section id="highlights">
+        <div class="section-container">
+            <h2 class="section-title">見どころ</h2>
+            <p class="section-subtitle">新会堂の魅力をたっぷりとお伝えする、さまざまなコーナーをご用意しています。</p>
+            <div class="highlights-grid">
+                <div class="highlight-card fade-in">
+                    <img src="https://placehold.co/600x400/4a6fa5/ffffff?text=Facility+Tour" alt="新会堂ツアー" class="highlight-card-image">
+                    <div class="highlight-card-content">
+                        <h3>新会堂ツアー</h3>
+                        <p>
+                            木の温もりが感じられる礼拝堂、明るい教室、多目的に使える文化ホールなど、
+                            最新の設備を備えた館内をご案内いたします。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="highlight-card fade-in">
+                    <img src="https://placehold.co/600x400/4a6fa5/ffffff?text=Events" alt="特別イベント" class="highlight-card-image">
+                    <div class="highlight-card-content">
+                        <h3>特別イベント</h3>
+                        <p>
+                            地元の神楽研究サークルによる力強い上演や、地域楽団によるミニコンサートを開催。<br>
+                            地域に開かれた施設としての交流を楽しみましょう。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="highlight-card fade-in">
+                    <img src="https://placehold.co/600x400/4a6fa5/ffffff?text=Exhibition" alt="展示コーナー" class="highlight-card-image">
+                    <div class="highlight-card-content">
+                        <h3>展示コーナー</h3>
+                        <p>
+                            過去の災害救援活動の実績や、備蓄物資の実例を展示。<br>
+                            地域の安心拠点としての役割や、家族歴史コーナーもご紹介します。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== スケジュール ========== -->
+    <section id="schedule">
+        <div class="section-container">
+            <h2 class="section-title">開催スケジュール</h2>
+            <table class="schedule-table fade-in">
+                <thead>
+                    <tr>
+                        <th>日程</th>
+                        <th>開催時間</th>
+                        <th>備考</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="schedule-date">4月17日（金）</td>
+                        <td>13:00 〜 20:00</td>
+                        <td>お仕事帰りにもお立ち寄りいただけます</td>
+                    </tr>
+                    <tr>
+                        <td class="schedule-date">4月18日（土）</td>
+                        <td>10:00 〜 20:00</td>
+                        <td>終日開催。ご家族連れで賑わう一日です</td>
+                    </tr>
+                    <tr>
+                        <td class="schedule-date">4月19日（日）</td>
+                        <td>10:00 〜 15:00</td>
+                        <td>最終日は午後3時までとなります</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ========== アクセス ========== -->
+    <section id="access">
+        <div class="section-container">
+            <h2 class="section-title">アクセス・お問い合わせ</h2>
+            <div class="access-content">
+                <div class="access-info fade-in">
+                    <h3>所在地</h3>
+                    <p>〒683-0804<br>鳥取県米子市米原1-10-57</p>
+
+                    <h3>お電話</h3>
+                    <p><a href="tel:07085282214">070-8528-2214</a></p>
+
+                    <h3>メール</h3>
+                    <p><a href="mailto:yonagoward@gmail.com">yonagoward@gmail.com</a></p>
+
+                    <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--color-text-light);">
+                        ※駐車場に限りがございます。可能な限り公共交通機関または乗り合わせでのご来場にご協力をお願いいたします。
+                    </p>
+                </div>
+
+                <div class="map-placeholder fade-in">
+                    <!-- Google Maps Embed Code Placeholder -->
+                    <p>【Google Maps 埋め込み箇所】<br>
+                    <span style="font-size: 0.8rem;">(ここにiframeを埋め込むことで地図が表示されます)</span><br><br>
+                    米子市米原1-10-57</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== フッター ========== -->
+    <footer>
+        <p>&copy; 2026 The Church of Jesus Christ of Latter-day Saints Yonago Ward.</p>
+        <p>地域の皆様と共に歩む、新しい米子の教会</p>
+    </footer>
+
+    <script>
+        // スクロール時のフェードインアニメーション
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
