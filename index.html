@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>米子ワード新会堂完成記念オープンハウス</title>
+    <title>新教会堂オープンハウス</title>
     <style>
         * {
             margin: 0;
@@ -53,8 +54,80 @@
             color: var(--color-accent-blue);
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1000;
+            padding: 0;
+        }
+
+        .hamburger span {
+            width: 100%;
+            height: 3px;
+            background-color: var(--color-accent-blue);
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
         .nav-links {
             display: none;
+        }
+
+        @media (max-width: 767px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 70%;
+                background-color: rgba(255, 255, 255, 0.98);
+                padding-top: 5rem;
+                padding-left: 2rem;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in-out;
+                z-index: 900;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                transform: translateX(0);
+            }
+
+            .nav-links li {
+                margin-bottom: 2rem;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: var(--color-text-dark);
+                text-decoration: none;
+                display: block;
+            }
         }
 
         @media (min-width: 768px) {
@@ -115,37 +188,45 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.6) 100%);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.6) 100%);
         }
 
         .hero-content {
             position: absolute;
+            top: 0;
             bottom: 0;
             left: 0;
             right: 0;
             z-index: 2;
             text-align: center;
-            padding: 3rem 1.5rem;
-            background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.95) 40%, rgba(255,255,255,1) 100%);
-            min-height: 40%;
+            padding: 5rem 1.5rem 3rem;
+            /* background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.95) 40%, rgba(255,255,255,1) 100%); */
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
+            align-items: center;
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
         }
 
         .hero-content h1 {
-            font-size: 2.2rem;
+            font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
+            font-size: 5.5vw;
             color: var(--color-accent-blue);
             margin-bottom: 0.5rem;
             font-weight: 700;
             line-height: 1.3;
+            /* width: 100%; */
+            text-align: left;
         }
 
         .hero-content p {
-            font-size: 1.1rem;
+            font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
+            font-size: 1.5rem;
             color: var(--color-text-dark);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             font-weight: 500;
+            margin-top: auto;
+            text-align: center;
+            line-height: 1.4;
         }
 
         .hero-date {
@@ -189,7 +270,7 @@
 
             .hero-content {
                 min-height: 50%;
-                padding: 2rem 1rem;
+                padding: 1rem;
             }
 
             .hero-content h1 {
@@ -521,16 +602,23 @@
         }
     </style>
 </head>
+
 <body>
     <!-- ========== ヘッダー ========== -->
     <header>
         <div class="header-content">
-            <div class="logo">米子ワード新会堂</div>
+            <div class="logo">新教会堂オープンハウス</div>
             <nav>
-                <ul class="nav-links">
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-links" id="nav-links">
                     <li><a href="#introduction">ご挨拶</a></li>
                     <li><a href="#highlights">見どころ</a></li>
                     <li><a href="#schedule">スケジュール</a></li>
+                    <li><a href="#faq">よくある質問</a></li>
                     <li><a href="#access">アクセス</a></li>
                 </ul>
             </nav>
@@ -544,8 +632,8 @@
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>はじめまして、米子の新しい教会です</h1>
-            <p>どなたでもご自由にお越しください</p>
+            <h1>はじめまして、<br>米子の新しい教会です</h1>
+            <p>この街で歩んで50余年<br>新たな気持ちでご挨拶させてください</p>
             <div class="hero-date">2026年4月17日(金)〜19日(日)</div>
             <a href="#access" class="cta-button">アクセス・地図を見る</a>
         </div>
@@ -557,17 +645,27 @@
             <h2 class="section-title">ご挨拶</h2>
             <div class="intro-content fade-in">
                 <p>
-                    このたび、末日聖徒イエス・キリスト教会 米子ワードの新会堂が完成いたしました。<br>
-                    地域の皆様の温かいご支援とご協力をいただき、この素晴らしい日を迎えられましたことを心より感謝申し上げます。
+                    米子の街に根ざして、おかげさまで52年。<br>
+                    このたび、末日聖徒イエス・キリスト教会 米子ワードは、新しい教会堂を完成させることができました。
                 </p>
                 <p>
-                    新しく清潔な会堂は、地域の皆様が集い、交流できる場所を目指しています。<br>
-                    「どんな建物なのかな？」「どんな活動をしているの？」といった疑問に気軽にお答えするため、<br>
-                    このオープンハウスを開催いたします。
+                    ずっとこの米子で見守ってくださった皆様への感謝を込めて、<br>
+                    そして、まだお会いしたことのない皆様への「はじめまして」の挨拶として、<br>
+                    この新しい建物をお披露目する「オープンハウス（内覧会）」を開催いたします。
                 </p>
                 <p>
-                    <strong>入場無料・予約不要・勧誘なし</strong>ですので、<br>
-                    お散歩のついでに、ご家族やご友人とぜひお気軽にお立ち寄りください。
+                    「どんな建物なのかな？」<br>
+                    「教会にバスケットゴールがあるのはなぜ？」<br>
+                    そんな、ちょっとした好奇心を抱いて、ぜひ扉を開けてみてください。
+                </p>
+                <p>
+                    心静まる神聖な礼拝堂と、開放感あふれる多目的ホール。<br>
+                    ここが、地域の皆様にとっての「新しいリビング」や「新しい居場所」になることを願っています。
+                </p>
+                <p>
+                    入場無料・予約不要です。宗教の勧誘もございません。<br>
+                    お散歩のついでに、ご家族やお友達と、お気軽にお立ち寄りください。<br>
+                    新しくなった教会堂で、皆様とお会いできるのをスタッフ一同楽しみにしています。
                 </p>
             </div>
             <div class="highlight-list">
@@ -598,7 +696,8 @@
             <p class="section-subtitle">新会堂の魅力をたっぷりとお伝えする、さまざまなコーナーをご用意しています。</p>
             <div class="highlights-grid">
                 <div class="highlight-card fade-in">
-                    <img src="https://placehold.co/600x400/4a6fa5/ffffff?text=Facility+Tour" alt="新会堂ツアー" class="highlight-card-image">
+                    <img src="https://placehold.co/600x400/4a6fa5/ffffff?text=Facility+Tour" alt="新会堂ツアー"
+                        class="highlight-card-image">
                     <div class="highlight-card-content">
                         <h3>新会堂ツアー</h3>
                         <p>
@@ -609,7 +708,8 @@
                 </div>
 
                 <div class="highlight-card fade-in">
-                    <img src="https://placehold.co/600x400/4a6fa5/ffffff?text=Events" alt="特別イベント" class="highlight-card-image">
+                    <img src="https://placehold.co/600x400/4a6fa5/ffffff?text=Events" alt="特別イベント"
+                        class="highlight-card-image">
                     <div class="highlight-card-content">
                         <h3>特別イベント</h3>
                         <p>
@@ -620,7 +720,8 @@
                 </div>
 
                 <div class="highlight-card fade-in">
-                    <img src="https://placehold.co/600x400/4a6fa5/ffffff?text=Exhibition" alt="展示コーナー" class="highlight-card-image">
+                    <img src="https://placehold.co/600x400/4a6fa5/ffffff?text=Exhibition" alt="展示コーナー"
+                        class="highlight-card-image">
                     <div class="highlight-card-content">
                         <h3>展示コーナー</h3>
                         <p>
@@ -666,6 +767,81 @@
         </div>
     </section>
 
+    <!-- ========== Q&A ========== -->
+    <section id="faq" style="background-color: #f8fafc;">
+        <div class="section-container">
+            <h2 class="section-title">よくある質問</h2>
+            <div class="faq-grid" style="display: grid; gap: 1.5rem;">
+
+                <div class="faq-item"
+                    style="background: white; padding: 2rem; border-radius: 12px; border: 1px solid var(--color-border); box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+                    <h3
+                        style="color: var(--color-accent-blue); font-size: 1.2rem; margin-bottom: 0.8rem; display: flex; align-items: center;">
+                        <span
+                            style="background: var(--color-accent-blue); color: white; padding: 0.2rem 0.8rem; border-radius: 4px; margin-right: 0.8rem; font-size: 0.9rem;">Q</span>
+                        本当に勧誘はありませんか？
+                    </h3>
+                    <p style="color: var(--color-text-dark); line-height: 1.8;">
+                        <span style="font-weight: bold; color: var(--color-accent-blue);">A. はい、ございません。</span><br>
+                        今回のオープンハウスは、地域の皆様に「こんな場所ができたんだ」と知っていただくための「地域交流イベント」です。<br>
+                        お名前の記入も不要ですので、ふらっと立ち寄って、建物を見るだけでも大歓迎です。
+                    </p>
+                </div>
+
+                <div class="faq-item"
+                    style="background: white; padding: 2rem; border-radius: 12px; border: 1px solid var(--color-border); box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+                    <h3
+                        style="color: var(--color-accent-blue); font-size: 1.2rem; margin-bottom: 0.8rem; display: flex; align-items: center;">
+                        <span
+                            style="background: var(--color-accent-blue); color: white; padding: 0.2rem 0.8rem; border-radius: 4px; margin-right: 0.8rem; font-size: 0.9rem;">Q</span>
+                        小さい子供を連れて行っても大丈夫ですか？
+                    </h3>
+                    <p style="color: var(--color-text-dark); line-height: 1.8;">
+                        <span style="font-weight: bold; color: var(--color-accent-blue);">A. もちろんです！</span><br>
+                        多目的ホールにはお子様が遊べるスペースをご用意しています。<br>
+                        館内には「多目的トイレ（おむつ交換台あり）」も完備していますので、安心してお越しください。
+                    </p>
+                </div>
+
+                <div class="faq-item"
+                    style="background: white; padding: 2rem; border-radius: 12px; border: 1px solid var(--color-border); box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+                    <h3
+                        style="color: var(--color-accent-blue); font-size: 1.2rem; margin-bottom: 0.8rem; display: flex; align-items: center;">
+                        <span
+                            style="background: var(--color-accent-blue); color: white; padding: 0.2rem 0.8rem; border-radius: 4px; margin-right: 0.8rem; font-size: 0.9rem;">Q</span>
+                        服装に決まりはありますか？上履きは必要ですか？
+                    </h3>
+                    <p style="color: var(--color-text-dark); line-height: 1.8;">
+                        <span style="font-weight: bold; color: var(--color-accent-blue);">A. 普段着でお越しください。</span><br>
+                        お散歩や買い物のついでに、そのままの服装で構いません。<br>
+                        館内は土足のままお入りいただけますので、上履きなども不要です。
+                    </p>
+                </div>
+
+                <div class="faq-item"
+                    style="background: white; padding: 2rem; border-radius: 12px; border: 1px solid var(--color-border); box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+                    <h3
+                        style="color: var(--color-accent-blue); font-size: 1.2rem; margin-bottom: 0.8rem; display: flex; align-items: center;">
+                        <span
+                            style="background: var(--color-accent-blue); color: white; padding: 0.2rem 0.8rem; border-radius: 4px; margin-right: 0.8rem; font-size: 0.9rem;">Q</span>
+                        駐車場はありますか？
+                    </h3>
+                    <p style="color: var(--color-text-dark); line-height: 1.8;">
+                        <span style="font-weight: bold; color: var(--color-accent-blue);">A. はい、教会敷地内にございます。</span><br>
+                        <br>
+                        <span
+                            style="color: #dc2626; font-weight: bold; background-color: #fef2f2; padding: 0.5rem; display: block; border-radius: 6px; border: 1px solid #fecaca;">
+                            【重要なお願い】<br>
+                            近隣の商業施設への駐車は、お店や他のお客様への多大なご迷惑となりますので、<br>
+                            <span style="text-decoration: underline;">絶対に駐車しないよう強くお願いいたします。</span>
+                        </span>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
     <!-- ========== アクセス ========== -->
     <section id="access">
         <div class="section-container">
@@ -673,24 +849,32 @@
             <div class="access-content">
                 <div class="access-info fade-in">
                     <h3>所在地</h3>
-                    <p>〒683-0804<br>鳥取県米子市米原1-10-57</p>
+                    <p>〒683-0804<br>鳥取県米子市米原１丁目１０－５７</p>
 
                     <h3>お電話</h3>
-                    <p><a href="tel:07085282214">070-8528-2214</a></p>
+                    <p><a href="tel:07085282214">070-8528-2214</a><span
+                            style="font-size: 0.9rem; margin-left: 0.5rem; color: var(--color-text-light);">(担当者個人携帯番号)</span>
+                    </p>
 
                     <h3>メール</h3>
                     <p><a href="mailto:yonagoward@gmail.com">yonagoward@gmail.com</a></p>
 
                     <p style="margin-top: 2rem; font-size: 0.95rem; color: var(--color-text-light);">
-                        ※駐車場に限りがございます。可能な限り公共交通機関または乗り合わせでのご来場にご協力をお願いいたします。
+                        ※駐車場をご用意しております。混雑の際は係員の指示に従ってください。また、教会前の側道は一方通行になっています。ご注意ください。
                     </p>
                 </div>
 
-                <div class="map-placeholder fade-in">
-                    <!-- Google Maps Embed Code Placeholder -->
-                    <p>【Google Maps 埋め込み箇所】<br>
-                    <span style="font-size: 0.8rem;">(ここにiframeを埋め込むことで地図が表示されます)</span><br><br>
-                    米子市米原1-10-57</p>
+                <div class="map-wrapper fade-in">
+                    <div class="map-container"
+                        style="width: 100%; height: 450px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3250.5179958518934!2d133.32435417622315!3d35.44196844307951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3556f826d73986e7%3A0xcc6d364b3c58e4cd!2z44CSNjgzLTA4MDQg6bOl5Y-W55yM57Gz5a2Q5biC57Gz5Y6f77yR5LiB55uu77yR77yQ4oiS77yV77yX!5e0!3m2!1sja!2sjp!4v1770809650864!5m2!1sja!2sjp"
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <p style="color: #d32f2f; margin-top: 0.5rem; font-weight: bold; font-size: 1.1rem;">
+                        ※お車での駐車場への入場は側道に入ってください
+                    </p>
                 </div>
             </div>
         </div>
@@ -709,7 +893,7 @@
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver(function(entries) {
+        const observer = new IntersectionObserver(function (entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
@@ -718,9 +902,27 @@
             });
         }, observerOptions);
 
+        // ハンバーガーメニューの制御
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
     </script>
 </body>
+
 </html>
