@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="https://kjakstyle-bit.github.io/openhouse/" target="_top">
     <title>新教会堂オープンハウス</title>
     <style>
         * {
@@ -199,11 +200,11 @@
             right: 0;
             z-index: 2;
             text-align: center;
-            padding: 5rem 1.5rem 3rem;
-            /* background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.95) 40%, rgba(255,255,255,1) 100%); */
+            padding: 1.5rem 1.5rem 3rem;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: flex-end;
             text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
         }
 
@@ -236,9 +237,20 @@
             border-radius: 50px;
             font-size: 1.1rem;
             font-weight: 600;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             display: inline-block;
             align-self: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid var(--color-accent-blue);
+            cursor: pointer;
+        }
+
+        .hero-date:hover {
+            background-color: transparent;
+            color: var(--color-accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 111, 165, 0.3);
         }
 
         .cta-button {
@@ -630,14 +642,14 @@
     <!-- ========== ヒーローセクション（フルスクリーン） ========== -->
     <section class="hero">
         <div class="hero-image-container">
-            <img src="./hero-image-web.jpg" alt="はじめまして、米子の新しい教会です" class="hero-image">
+            <img src="https://kjakstyle-bit.github.io/openhouse/hero-image-web.jpg" alt="はじめまして、米子の新しい教会です"
+                class="hero-image">
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <!-- テキストは画像に含まれているため非表示 -->
             <h1 style="display: none;">はじめまして、米子の新しい教会です</h1>
-            <p>この街で歩んで50余年<br>新たな気持ちでご挨拶させてください</p>
-            <div class="hero-date">2026年4月17日(金)〜19日(日)</div>
+            <a href="#schedule" class="hero-date">📅 2026年4月17日(金)〜19日(日)</a>
             <a href="#access" class="cta-button">アクセス・地図を見る</a>
         </div>
     </section>
