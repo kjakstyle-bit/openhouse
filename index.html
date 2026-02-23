@@ -62,11 +62,13 @@
             justify-content: space-between;
             width: 30px;
             height: 21px;
-            background: transparent;
+            background: rgba(255, 255, 255, 0.5);
             border: none;
             cursor: pointer;
             z-index: 1000;
-            padding: 0;
+            padding: 6px;
+            border-radius: 6px;
+            box-sizing: content-box;
         }
 
         .hamburger span {
@@ -143,11 +145,15 @@
                 text-decoration: none;
                 color: var(--color-text-dark);
                 font-size: 0.95rem;
-                transition: color 0.3s ease;
+                transition: all 0.3s ease;
+                background-color: rgba(255, 255, 255, 0.5);
+                padding: 0.4rem 0.8rem;
+                border-radius: 6px;
             }
 
             .nav-links a:hover {
                 color: var(--color-accent-blue);
+                background-color: rgba(255, 255, 255, 0.8);
             }
         }
 
