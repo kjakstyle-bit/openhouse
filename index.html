@@ -32,12 +32,20 @@
 
         /* ========== ヘッダー ========== */
         header {
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: transparent;
             padding: 1rem 1.5rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            position: sticky;
+            box-shadow: none;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 100;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             backdrop-filter: blur(10px);
         }
 
@@ -71,9 +79,13 @@
         .hamburger span {
             width: 100%;
             height: 3px;
-            background-color: var(--color-accent-blue);
+            background-color: #ffffff;
             transition: all 0.3s ease;
             border-radius: 3px;
+        }
+
+        header.scrolled .hamburger span {
+            background-color: var(--color-accent-blue);
         }
 
         .hamburger.active span:nth-child(1) {
@@ -140,12 +152,20 @@
 
             .nav-links a {
                 text-decoration: none;
-                color: var(--color-text-dark);
+                color: #ffffff;
                 font-size: 0.95rem;
                 transition: color 0.3s ease;
             }
 
             .nav-links a:hover {
+                color: rgba(255, 255, 255, 0.7);
+            }
+
+            header.scrolled .nav-links a {
+                color: var(--color-text-dark);
+            }
+
+            header.scrolled .nav-links a:hover {
                 color: var(--color-accent-blue);
             }
         }
@@ -621,7 +641,7 @@
     <!-- ========== ヘッダー ========== -->
     <header>
         <div class="header-content">
-            <div class="logo">新教会堂オープンハウス</div>
+            <div class="logo"></div>
             <nav>
                 <div class="hamburger" id="hamburger">
                     <span></span>
@@ -959,6 +979,16 @@
                     targetElement.scrollIntoView({ behavior: 'smooth' });
                 }
             });
+        });
+
+        // ヘッダーのスクロール連動（透明→白背景）
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         });
 
         document.querySelectorAll('.fade-in').forEach(el => {
