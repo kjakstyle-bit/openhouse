@@ -949,6 +949,18 @@
             });
         });
 
+        // ヒーローセクションのボタンにスムーズスクロールを適用
+        document.querySelectorAll('.hero-date, .cta-button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = btn.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
