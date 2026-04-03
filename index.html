@@ -406,14 +406,15 @@
 
         .hero-content h1 {
             font-family: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
-            font-size: 3rem;
+            font-size: 4rem;
             color: white;
             margin-bottom: 1rem;
             font-weight: 700;
             line-height: 1.4;
             text-align: center;
-            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3);
+            text-shadow: 0 3px 15px rgba(0, 0, 0, 0.6), 0 1px 4px rgba(0, 0, 0, 0.4);
             letter-spacing: 0.05em;
+            transition: opacity 0.6s ease-in-out;
         }
 
         .hero-content p {
@@ -484,7 +485,7 @@
             }
 
             .hero-content h1 {
-                font-size: 1.6rem;
+                font-size: 2rem;
             }
 
             .hero-content p {
@@ -886,7 +887,7 @@
 
         <!-- ヒーローコンテンツ（テキスト・ボタン） -->
         <div class="hero-content">
-            <h1>はじめまして、<br>米子の新しい教会です</h1>
+            <h1 id="hero-catchcopy">はじめまして、<br>米子の新しい教会です</h1>
             <a href="#faq-no-solicitation" class="hero-date">🤝 宗教の勧誘はありません<br>どなたでも気軽にお越しください</a>
             <a href="#schedule" class="hero-date">📅 2026年4月17日(金)〜19日(日)</a>
             <a href="#access" class="cta-button">アクセス・地図を見る</a>
@@ -1227,9 +1228,26 @@
             const dots = document.querySelectorAll('.carousel-dot');
             const prevBtn = document.getElementById('carousel-prev');
             const nextBtn = document.getElementById('carousel-next');
+            const catchcopy = document.getElementById('hero-catchcopy');
             let currentIndex = 0;
             let autoSlideInterval;
             const SLIDE_INTERVAL = 5000; // 5秒
+
+            // 各スライドのキャッチコピー定義
+            const catchcopies = [
+                'はじめまして、<br>米子の新しい教会です',
+                '心静まる、神聖な空間<br>ここで、心をリセットする',
+                '教会にバスケットゴール？<br>祈りも、遊びも、この場所で'
+            ];
+
+            // キャッチコピーをフェードで切り替え
+            function updateCatchcopy(index) {
+                catchcopy.style.opacity = '0';
+                setTimeout(() => {
+                    catchcopy.innerHTML = catchcopies[index];
+                    catchcopy.style.opacity = '1';
+                }, 400);
+            }
 
             // スライドを指定インデックスに切り替え
             function goToSlide(index) {
@@ -1238,6 +1256,7 @@
                 currentIndex = (index + slides.length) % slides.length;
                 slides[currentIndex].classList.add('active');
                 dots[currentIndex].classList.add('active');
+                updateCatchcopy(currentIndex);
             }
 
             // 次のスライドへ
